@@ -42,7 +42,7 @@ void menu()
 		{
 		case 1: inicializar();
 			break;
-		case 2:insere();
+		case 2: insere();
 			break;
 		case 3: remove();
 			break;
@@ -88,13 +88,34 @@ void insere()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
+	if (inicio == NULL) {
+		inicio = novo;
+		fim = novo;
+	}
+	else {
+		fim->prox = novo;
+		fim = novo;
+	}
 
+	cout << "Elemento adicionado!" << endl;
 }
 
 void remove()
 {
-
-
-
+	if (inicio == NULL) {
+		cout << "Fila vazia!" << endl;
+	}
+	else if (inicio == fim) {
+		cout << "Elemento excluido: " << inicio->valor << endl;
+		free(inicio);
+		inicio = NULL;
+		fim = NULL;
+	}
+	else {
+		NO* aux = inicio;
+		inicio = inicio->prox;
+		cout << "Elemento excluido: " << aux->valor << endl;
+		free(aux);
+	}
 }
 
